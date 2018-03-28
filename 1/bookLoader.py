@@ -55,6 +55,6 @@ if __name__ == '__main__':
         bookLoader.writer(path, title, text)
         index += 1
         os.system('clear')
-        print("下载%.3f%%..." % (float(index) / length * 100) + '\r')
+        print("下载%.2f%%..." % (float(index) / length * 100) + '\r')
 
     print("下载完成！")
