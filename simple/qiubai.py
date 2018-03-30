@@ -32,9 +32,9 @@ class QiuBai:
     def writer(self, path, title, text):
         write_flag = True
         with io.open(path, 'a', encoding='utf-8') as f:
-            f.write((title + '\n').decode("utf-8"))
-            f.writelines(text.decode("utf-8"),)
-            f.write('\n\n'.decode("utf-8"),)
+            f.write((title + u'\n'))
+            f.writelines(text)
+            f.write(u'\n')
 
 
 if __name__ == '__main__':
