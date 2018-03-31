@@ -26,17 +26,16 @@ class BookLoader:
         req = requests.get(url=target)
         html = req.text
         bf = BeautifulSoup(html)
-        title = bf.find_all('h1')[0].text.encode("utf-8")
+        title = bf.find_all('h1')[0].text
         texts = bf.find_all('div', class_='showtxt')
-        text = texts[0].text.encode("utf-8").replace('\xa0'*8, '\n\n')
+        text = texts[0].text.replace('\xa0'*8, '\n\n')
         return title, text
 
     def writer(self, path, title, text):
-        write_flag = True
         with io.open(path, 'a', encoding='utf-8') as f:
-            f.write((title + '\n').decode("utf-8"))
-            f.writelines(text.decode("utf-8"),)
-            f.write('\n\n'.decode("utf-8"),)
+            f.write((title + '\n'))
+            f.writelines(text)
+            f.write('\n\n')
 
 
 if __name__ == '__main__':
@@ -54,7 +53,6 @@ if __name__ == '__main__':
         title, text = bookLoader.getChapter(chapter)
         bookLoader.writer(path, title, text)
         index += 1
-        os.system('clear')
         print("下载%.2f%%..." % (float(index) / length * 100) + '\r')
 
     print("下载完成！")
